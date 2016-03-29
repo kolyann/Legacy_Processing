@@ -1,6 +1,7 @@
 class Cycle:
     def __init__(self, lng, speed=1, al=0, x0=0, y0=0, P=None):
         self.lng = lng
+        self.init_al = al
         self.al = al
         self.speed = speed
         self.x0 = x0
@@ -23,6 +24,10 @@ class Cycle:
         if isinstance(self.P,Cycle):
             self.P._update_alpha(steps)
     
+    def reset_alpha(self):
+        self.al = 0
+        self.refresh()
+    
     def update(self,steps=1):
         #print(str(self))
         self._update_alpha(steps)
@@ -41,7 +46,7 @@ class Cycle:
         else:
             return str(self.__dict__)
     
-    def get_and_update(self):
+    def get_and_update(self,steps=1):
         res = self.get_coord()
-        self.update()
+        self.update(steps)
         return res
