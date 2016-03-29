@@ -3,3 +3,5 @@ modes/
 modes/*
 /modes
 /modes/*
+*.gif
+/*/*.gif
