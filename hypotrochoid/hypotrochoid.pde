@@ -6,7 +6,7 @@ static int border = 30;
 static float _mX = mX - border;
 static float _mY = mY - border;
 float angle = 0;//(int)random(360);
-boolean recording = false;
+boolean recording = true;
 GifMaker gifExport;
 
 int size = 15; 
@@ -18,7 +18,7 @@ float h = 1.5;
 void setup() {
   if(recording)
   {
-    gifExport = new GifMaker(this, "C:\\Users\\Tigin_NA\\Documents\\trash\\ProcessingGifs\\spiral_1.gif",1);
+    gifExport = new GifMaker(this, "C:\\Users\\Tigin_NA\\Documents\\trash\\ProcessingGifs\\hypotro_1.gif",1);
     gifExport.setRepeat(0);             // make it an "endless" animation
   }
   size(mX, mY);
@@ -34,22 +34,25 @@ void draw() {
   angle+=0.1;
   //line(mX/2,mY/2,ptdx(angle,1),ptdy(angle,1));
   fill(255,255,255,0);
-
+  println(angle+" "+ptdx(angle));
   drawTail(angle);
-  if(recording)
+  if(angle > 18.7)
   {
-    gifExport.setDelay(1000/30);
-    gifExport.addFrame();
-  
-    if(angle==(360/N))
-      gifExport.finish(); 
+    if(recording)
+    {
+      gifExport.setDelay(1000/30);
+      gifExport.addFrame();
+    
+      if(angle > 18.7*3)
+        gifExport.finish(); 
+    }
   }
 
 }
 void drawTail(float _angle)
 {
     noStroke();
-    fill((_angle*5)%360,360,360);
+    fill((_angle*(180.0/18.7))%360,360,360);
     ellipse(ptdx(_angle),ptdy(_angle),size,size);
 }
 

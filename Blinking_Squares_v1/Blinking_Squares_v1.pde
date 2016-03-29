@@ -1,9 +1,9 @@
 import gifAnimation.*;
 
-static float mX = 200;
-static float mY = 200;
+static float mX = 300;
+static float mY = 300;
 
-boolean recording = false;
+boolean recording = true;
 GifMaker gifExport;
 static final int totalFrameRate = 30;
 int squaresAmount = 5;
@@ -22,7 +22,7 @@ void setup() {
   colorMode(HSB,360);
   background(360);
   calculateWidths();
-  textSize(12);
+  textSize(14);
   textLeading(11);
   textAlign(CENTER);
 }
@@ -36,22 +36,22 @@ void draw(){
     {
       String s = "";
 
-      s = (i/sqX+j/sqY)%2==0?"\nСОСИ":"\nХУЙ";
+      s = (i/sqX+j/sqY)%2==0?"\n\nКалян":"\n\nКрасава";
       fill(360,360,360);
       text(s,i,j,sqX,sqY);
-      fill(360,360,0,5*(dist(R*cos(radians(angle))+mX/2,R*sin(radians(angle))+mY/2,i+sqX/2,j+sqY/2)));
+      fill(360,360,0,5.5*(dist(R*cos(radians(angle))+mX/2,R*sin(radians(angle))+mY/2,i+sqX/2,j+sqY/2)));
       noStroke();
       rect(i,j,sqX,sqY);
     }
   }
   if(recording)
   {
-    if(angle>=360)
+    if(abs(angle)>=360)
       gifExport.finish();
     else
       recFrame();
   }
-  angle+=speed;
+  angle-=speed;
 }
 
 void calculateWidths()

@@ -41,7 +41,7 @@ void draw() {
   for(float i=0.1;i<=0.8;i+=0.1)
   {
     for(int j=0;j<N;j++)
-      drawTail(j*360/N+angle*(1-i)*10,12,i*1.4,(int)(30*(1-i*i*i))/N,360*(i-0.1)/0.69 - 40);
+      drawTail(j*360/N+angle*(1-i)*10,10,i*1.4,(int)(30*(1-i*i*i))/N,360*(i-0.1)/0.69 - 40);
   }
   if(recording)
   {

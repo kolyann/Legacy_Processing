@@ -19,7 +19,7 @@ def setup():
     frameRate(_fRate)
     background(360)
     global gifExp
-    gifExp = gifExport(True,verbose=True)   
+    gifExp = gifExport(False,verbose=True)   
     
 
 def draw():
