@@ -41,3 +41,7 @@ class Cycle:
         else:
             return str(self.__dict__)
     
+    def get_and_update(self):
+        res = self.get_coord()
+        self.update()
+        return res
