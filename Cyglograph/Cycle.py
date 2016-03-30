@@ -25,7 +25,9 @@ class Cycle:
             self.P._update_alpha(steps)
     
     def reset_alpha(self):
-        self.al = 0
+        self.al = self.init_al
+        if isinstance(self.P,Cycle):
+            self.P.reset_alpha()        
         self.refresh()
     
     def update(self,steps=1):

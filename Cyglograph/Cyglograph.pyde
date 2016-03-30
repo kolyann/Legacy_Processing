@@ -65,21 +65,25 @@ def setup():
     #Cyc1 = Cycle(90,1,P=Cycle(15,-4,P=Cycle(12,3)))
     #Портал
     #Cyc1 = Cycle(90,5,P=Cycle(25,-44,P=Cycle(45,-5)))
+    #Привидение
+    #Cyc1 = Cycle(10,6,P=Cycle(10,-6,P=Cycle(70,-1)))
+    Cyc1 = Cycle(40,1,
+                 P=Cycle(60,-3,
+                         P=Cycle(5,640,
+                                 P=Cycle(20,-1,-45,
+                                         P=Cycle(10,-2,45)))))
     
-    Cyc1 = Cycle(44,5,
-                 P=Cycle(85,-5,
-                         P=Cycle(8,-12,
-                                 P=Cycle(33,6,
-                                         P=Cycle(45,8,-90,
-                                                 P=Cycle(35,-6,-90))))))
-    
+    global rotating
+    rotating = 0
     global meta
     meta = analyzer(Cyc1.get_and_update)
+    Cyc1.reset_alpha()
     #Cyc1.reset_alpha()
     #print(meta['period'])
     global print_state
     print_state = 1
     print(meta)
+    print(type(analyzer))
     
 '''def settings():
     global meta
@@ -92,13 +96,16 @@ def draw():
     rotate(radians(-90))
     #background(0,0,0,111)
     global step
-    speeds = 0.05
+    global rotating
+    speeds = 0.1
+    rotate(radians(step*rotating*speeds))
+    
     x1,y1 = Cyc1.get_and_update(steps=speeds)
     noStroke()
     global print_state
-    fill(210,360,300*print_state)
+    fill(210,120,40*print_state)
     sz = 2+(1-print_state)
-    #stroke(190,360,360)
+    #stroke(190,360,90)
     #strokeWeight(0)
     ellipse(x1,y1,sz,sz)
     #Cyc1.update()
