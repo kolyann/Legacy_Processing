@@ -1,12 +1,20 @@
 class Cycle:
-    def __init__(self, lng, speed=1, al=0, x0=0, y0=0, P=None):
+    def __init__(self, lng, speed=1, P=None, al=0, x0=0, y0=0):
         self.lng = lng
         self.init_al = al
         self.al = al
         self.speed = speed
         self.x0 = x0
         self.y0 = y0
-        self.P = P
+        
+        if isinstance(P,list):
+            pargs = P[0]
+            pkwargs = {}
+            if len(P) > 1:
+                pkwargs = P[1]
+            self.P = Cycle(*pargs,**pkwargs)
+        else:
+            self.P = P
         self.refresh()
 
     

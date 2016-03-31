@@ -67,12 +67,9 @@ def setup():
     #Cyc1 = Cycle(90,5,P=Cycle(25,-44,P=Cycle(45,-5)))
     #Привидение
     #Cyc1 = Cycle(10,6,P=Cycle(10,-6,P=Cycle(70,-1)))
-    Cyc1 = Cycle(40,1,
-                 P=Cycle(60,-3,
-                         P=Cycle(5,640,
-                                 P=Cycle(20,-1,-45,
-                                         P=Cycle(10,-2,45)))))
-    
+    Cyc1 = Cycle(40,-2,
+                   [(30,32,
+                     (40,-8))])
     global rotating
     rotating = 0
     global meta
