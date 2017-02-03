@@ -1,3 +1,5 @@
+*.gif
+
 /modes/*
 !/modes/PythonMode
 
@@ -6,3 +8,4 @@
 
 /modes/PythonMode/mode/*
 !/modes/PythonMode/mode/Lib
+
