@@ -1,2 +1,3 @@
 /modes/*
+!/modes/PythonMode/mode/Lib
 !/modes/PythonMode/mode/Lib/*
