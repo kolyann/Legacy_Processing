@@ -1,7 +1,2 @@
-modes
-modes/
-modes/*
 /modes
-/modes/*
-*.gif
-/*/*.gif
+!/modes/PythonMode/mode/Lib
