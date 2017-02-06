@@ -1,10 +1,10 @@
 from pprint import pprint
 import imp
 '''import Processing lib gifAmimation "http://extrapixel.github.io/gif-animation/"'''
-myimp = imp.load_source('gifExporter',
-        ''.join([os.environ['USERPROFILE'],
-                 '\\Documents\\Processing\\py_template\\gifexp\\GifExporter.py']))
-from gifExporter import gifExport
+#myimp = imp.load_source('gifExporter',
+#        ''.join([os.environ['USERPROFILE'],
+#                 '\\Documents\\Processing\\py_template\\gifexp\\GifExporter.py']))
+from GifExporter import GifExport
 import os
 
 from Cycle import Cycle
@@ -12,12 +12,13 @@ from Cycle import Cycle
 
 
 step = 0
-mX = 400
-mY = 400
-_fRate = 9000
+mX = 250
+mY = 250
+_fRate = 60
+recording_state = False
 
 
-def analyzer(func, max_period=10**4, compare_len=8, max_err=0.001, *args, **kwargs):
+def analyzer(func, max_period=10**4, compare_len=8, max_err=0.0001, *args, **kwargs):
     data = []
     compare_vector = []
     for i in range(compare_len):
@@ -56,20 +57,19 @@ def setup():
     frameRate(_fRate)
     background(0)
     global gifExp
-    gifExp = gifExport(False,verbose=True)  
+    gifExp = GifExport(recording_state, verbose=True)  
     global Cyc1
     
     #Конопля
-    #Cyc1 = Cycle(55,-1,P=Cycle(35,5,P=Cycle(39,-6)))
+    Cyc1 = Cycle(55,-1,P=Cycle(35,5,P=Cycle(39,-6)))
     #Домик
     #Cyc1 = Cycle(90,1,P=Cycle(15,-4,P=Cycle(12,3)))
     #Портал
     #Cyc1 = Cycle(90,5,P=Cycle(25,-44,P=Cycle(45,-5)))
     #Привидение
     #Cyc1 = Cycle(10,6,P=Cycle(10,-6,P=Cycle(70,-1)))
-    Cyc1 = Cycle(40,-2,
-                   [(30,32,
-                     (40,-8))])
+    #Cyc1 = Cycle(40,-1,[(30,4,(40,-8))])
+    Cyc1 = Cycle(30,2, [(15,-4, None, 60)])
     global rotating
     rotating = 0
     global meta
@@ -80,7 +80,6 @@ def setup():
     global print_state
     print_state = 1
     print(meta)
-    print(type(analyzer))
     
 '''def settings():
     global meta
@@ -94,20 +93,22 @@ def draw():
     #background(0,0,0,111)
     global step
     global rotating
-    speeds = 0.1
+    speeds = 1
     rotate(radians(step*rotating*speeds))
     
     x1,y1 = Cyc1.get_and_update(steps=speeds)
     noStroke()
     global print_state
-    fill(210,120,40*print_state)
+    fill(210,120,220*print_state)
     sz = 2+(1-print_state)
     #stroke(190,360,90)
     #strokeWeight(0)
     ellipse(x1,y1,sz,sz)
     #Cyc1.update()
     gifExp.rec()
-    step+=1
+    step+=speeds
+    if step >= meta['period']:
+        gifExp.finish()
     #if step % int(meta['period']/speeds) == 0:
     #    print(step,meta['period'],'switch')
     #    print_state = (print_state + 1) % 2

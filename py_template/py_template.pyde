@@ -1,7 +1,5 @@
 from pprint import pprint
-import GifExporter
-import os
-
+from GifExporter import GifExport
 
 step = 0;
 mX = 300;
@@ -14,7 +12,8 @@ def setup():
     frameRate(_fRate)
     background(360)
     global gifExp
-    gifExp = GifExporter.GifExport(False,verbose=True)   
+    gifExp = GifExport(False,verbose=True)
+    print gifExp.__doc__   
     
 
 def draw():
