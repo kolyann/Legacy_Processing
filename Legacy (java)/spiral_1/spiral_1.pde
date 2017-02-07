@@ -1,7 +1,7 @@
 import gifAnimation.*;
 
-static int mX = 250;
-static int mY = 250;
+static int mX = 350;
+static int mY = 350;
 static int border = 30;
 static float _mX = mX - border;
 static float _mY = mY - border;
@@ -26,10 +26,14 @@ void setup() {
     gifExport = new GifMaker(this, "C:\\Users\\Tigin_NA\\Documents\\trash\\ProcessingGifs\\"+gifname+".gif",1);
     gifExport.setRepeat(0);             // make it an "endless" animation
   }
-  size(mX, mY);
+  
   frameRate(30);
   colorMode(HSB,360);
   //gifExport.setTransparent(0,0,0);    // black is transparent
+}
+
+void settings() {
+  size(mX, mY);
 }
 
 void draw() {
@@ -78,3 +82,6 @@ float ptdy(float _fi, float _r)
   return tmpy;
 }
 
+void mousePressed(){
+  //saveFrame();
+}

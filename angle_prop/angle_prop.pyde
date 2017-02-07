@@ -1,10 +1,5 @@
 from pprint import pprint
-import imp
-'''import Processing lib gifAmimation "http://extrapixel.github.io/gif-animation/"'''
-myimp = imp.load_source('gifExporter',
-        ''.join([os.environ['USERPROFILE'],
-                 '\\Documents\\Processing\\py_template\\gifexp\\GifExporter.py']))
-from gifExporter import gifExport
+from GifExporter import GifExport
 import os
 
 
@@ -19,7 +14,7 @@ def setup():
     frameRate(_fRate)
     background(360)
     global gifExp
-    gifExp = gifExport(False,verbose=True)   
+    gifExp = GifExport(False,verbose=True)   
 
 
 def draw():
