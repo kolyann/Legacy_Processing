@@ -22,9 +22,10 @@ def draw():
     translate(mX/2, mY/2)
     smooth(5)
     rotate(radians(step))
-    le = 45
+    le = mouseX
+    al = mouseY
     for t in [radians(i)*(360/9) for i in range(1, 10)]:
-        draw_byaka(le, -45, t, t*200, 1.2)
+        draw_byaka(le, -al, t, t*212, 1.2)
     
     
     gifExp.rec()
@@ -35,14 +36,18 @@ def draw():
 def rec_line(l, a, k):
     if k<=1.01:
         raise Exception("Wrong k parameter")
-    pushMatrix()
-    rotate(radians(a))
-    strokeWeight(sqrt(l+1))
-    line(0, 0, l, 0)
-    if l>2:
-        translate(l, 0)
-        rec_line(l/k, a/k, k)
-    popMatrix()
+    try:
+        pushMatrix()
+        rotate(radians(a))
+        strokeWeight(sqrt(l+1))
+        stroke(300, 20, 360)
+        line(0, 0, l, 0)
+        if l>=2:
+            translate(l, 0)
+            rec_line(l/k, a/k, k)
+        popMatrix()
+    except:
+        pass
 
 def draw_byaka(le, angle, shift, phase, coef, freq=2):
     pushMatrix()
