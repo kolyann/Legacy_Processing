@@ -13,7 +13,7 @@ class square:
         self.sz = sz
         self.col = col
         self.cor = cor
-        self.phase = phase
+        self.phase = phase % 360
         self.xm = x
         self.ym = y
         
@@ -31,7 +31,7 @@ class square:
         pushMatrix()
         translate(self.xm, self.ym)
         noStroke()
-        fill(color(233, 18*3.6, 360-(self.xm + self.ym)/1.7))
+        fill(color(233, 10*3.6, 360-(self.xm + self.ym)/1.5))
         rect(0, 0, self.sz-5, self.sz-5, self.cor, self.cor, self.cor, self.cor)
         popMatrix()
 
@@ -53,8 +53,8 @@ def setup():
                      c[1] * sz,
                      sz = sz,
                      cor = corner,
-                     phase = (c[0]*3 + c[1]*2) * 90,
-                     col = color(66, 360, 55)
+                     phase = (c[0]*3 + c[1]*4) * 90,
+                     col = color(30, 360, 55)
                      ) for c in row] for row in cells]
     
 
